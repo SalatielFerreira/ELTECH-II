@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: url("../assets/images/fundo.png") no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.main-wrapper {
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.company-title {
+  font-size: clamp(32px, 80px, 90px);
+  font-weight: 800;
+  color: white;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+  word-break: break-word;
+}
+
+.card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 380px;
+  padding: clamp(20px, 4vw, 35px);
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: fadeIn 0.4s ease;
+  margin: 0 auto;
+}
+
+.form {
+  display: none;
+  flex-direction: column;
+}
+
+.form.active {
+  display: flex;
+}
+
+h2 {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: clamp(18px, 4vw, 24px);
+}
+
+input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1e7f4f;
+  box-shadow: 0 0 0 2px rgba(30,127,79,0.2);
+}
+
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #1e7f4f;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background: #145a3a;
+  transform: translateY(-2px);
+}
+
+.footer-links {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #1e7f4f;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-links span {
+  cursor: pointer;
+}
+
+.footer-links span:hover {
+  text-decoration: underline;
+}
+
+.toast {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: 0.4s ease;
+  z-index: 9999;
+  opacity: 0;
+}
+
+.toast.show {
+  top: 20px;
+  opacity: 1;
+}
+
+.toast.success {
+  background: #1e7f4f;
+}
+
+.toast.error {
+  background: #b02a2a;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

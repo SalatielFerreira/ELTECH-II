@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELTECH - Rebanho</title>
+
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/rebanho.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+  <link rel="shortcut icon" href="../assets/images/favicon.png">
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <h1 class="logo">ELTECH</h1>
+
+    <nav class="menu">
+      <a href="home.html"><i class="fas fa-house"></i> Home</a>
+      <a href="rebanho.html" class="active"><i class="fas fa-cow"></i> Rebanho</a>
+      <a href="inseminacao.html"><i class="fas fa-dna"></i> Inseminação</a>
+      <a href="alimentacao.html"><i class="fas fa-seedling"></i> Alimentação</a>
+      <a href="vacinacao.html"><i class="fas fa-syringe"></i> Vacinação</a>
+      <a href="relatorio.html"><i class="fas fa-chart-line"></i> Relatório</a>
+      <a href="#" onclick="openSettings()"><i class="fas fa-gear"></i> Configurações</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section class="herd-panel">
+      <header class="herd-panel__header" id="sheetHeader">
+        <h1>Gerenciar Planilhas de Rebanhos</h1>
+        <p>Crie ou selecione uma planilha para adicionar e organizar seus animais.</p>
+      </header>
+
+      <div id="sheetListSection" class="sheet-section">
+        <button class="primary-btn create-sheet-btn" id="createSheetBtn">
+          <i class="fas fa-plus"></i> Criar Nova Planilha de Rebanhos
+        </button>
+
+        <div class="sheet-list" id="sheetList">
+          <p class="empty-state">Nenhuma planilha de rebanho criada ainda.</p>
+        </div>
+      </div>
+
+      <div id="sheetDetails" class="sheet-section hidden">
+        <h2 id="sheetTitle" class="sheet-detail-title">Nome da Planilha</h2>
+
+        <div class="sheet-detail-actions">
+          <button class="back-btn" id="backToListBtn">
+            <i class="fas fa-arrow-left"></i> Voltar
+          </button>
+
+          <button class="add-animal-btn" id="addAnimalBtn">
+            <i class="fas fa-plus"></i> Adicionar Animal
+          </button>
+        </div>
+
+        <div class="sheet-search">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="animalSearchInput"
+            placeholder="Buscar animal pelo número ou nome"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="animal-list" id="animalList">
+          <p class="empty-state">Nenhum animal cadastrado nesta planilha.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</div>
+
+<!-- Modal Criar/Editar Planilha -->
+<div class="modal-overlay" id="sheetModal">
+  <div class="sheet-modal">
+    <span class="close-btn" id="closeSheetModal">&times;</span>
+
+    <h3 id="sheetModalTitle">Nova Planilha</h3>
+    <p class="sheet-modal__subtitle">
+      Escolha um nome para identificar esta planilha de rebanho.
+    </p>
+
+    <form id="sheetForm" autocomplete="off">
+      <input type="text" id="sheetName" placeholder="Nome da planilha" maxlength="60" required>
+      <div class="modal-actions">
+        <button type="button" class="ghost-btn" id="cancelSheetBtn">Cancelar</button>
+        <button type="submit" class="primary-btn">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Confirmar Exclusão Planilha -->
+<div class="modal-overlay" id="deleteSheetModal">
+  <div class="confirm-modal">
+    <h3>Excluir planilha?</h3>
+    <p class="confirm-description" id="deleteSheetMessage"></p>
+    <div class="confirm-actions">
+      <button class="cancel-btn" id="cancelDeleteSheetBtn">Cancelar</button>
+      <button class="confirm-btn" id="confirmDeleteSheetBtn">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Adicionar/Editar Animal -->
+<div class="modal-overlay" id="addAnimalModal">
+  <div class="add-animal-modal">
+    <span class="close-btn" id="closeAddAnimalModal">&times;</span>
+
+    <h3 id="addAnimalModalTitle">Adicionar Novo Animal</h3>
+    <p class="add-animal__subtitle">
+      Preencha as informações abaixo para registrar o animal nesta planilha.
+    </p>
+
+    <form id="addAnimalForm" autocomplete="off">
+      <div class="grid">
+        <label>
+          <span>Número do Animal</span>
+          <input type="number" id="animalNumber" min="0" step="1" required placeholder="Número identificador">
+        </label>
+
+        <label>
+          <span>Nome</span>
+          <input type="text" id="animalName" maxlength="60" required placeholder="Ex: Mimosa">
+        </label>
+
+        <label>
+          <span>Sexo</span>
+          <select id="animalSex" required>
+            <option value="">Selecione</option>
+            <option value="Macho">Macho</option>
+            <option value="Fêmea">Fêmea</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Data de Nascimento</span>
+          <input type="date" id="animalBirthDate" required>
+        </label>
+
+        <label>
+          <span>Categoria</span>
+          <select id="animalCategory" required>
+            <option value="">Selecione</option>
+            <option value="Bezerro">Bezerro</option>
+            <option value="Novilha">Novilha</option>
+            <option value="Garrote">Garrote</option>
+            <option value="Vaca">Vaca</option>
+            <option value="Touro">Touro</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Raça</span>
+          <input type="text" id="animalBreed" maxlength="60" required placeholder="Ex: Holandesa">
+        </label>
+
+        <label>
+          <span>Peso (Kg)</span>
+          <input type="number" id="animalWeight" min="0" step="0.1" required placeholder="Ex: 450">
+        </label>
+
+        <label>
+          <span>Status</span>
+          <select id="animalStatus" required>
+            <option value="">Selecione</option>
+            <option value="Seca">Seca</option>
+            <option value="Prenha">Prenha</option>
+            <option value="Em Lactação">Em Lactação</option>
+            <option value="Não se aplica">Não se aplica (Macho/Jovem)</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Data Início Status</span>
+          <input type="date" id="animalStatusStartDate">
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="ghost-btn" id="cancelAddAnimalBtn">Cancelar</button>
+        <button type="submit" class="primary-btn" id="submitAnimalBtn">Adicionar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Confirmar Exclusão Animal -->
+<div class="modal-overlay" id="deleteAnimalModal">
+  <div class="confirm-modal">
+    <h3>Excluir animal?</h3>
+    <p class="confirm-description" id="deleteAnimalMessage"></p>
+    <div class="confirm-actions">
+      <button class="cancel-btn" id="cancelDeleteAnimalBtn">Cancelar</button>
+      <button class="confirm-btn" id="confirmDeleteAnimalBtn">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modais globais (configurações/logout) -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <span class="close-btn" onclick="closeSettings()">&times;</span>
+    <h2 class="modal-title">Configurações</h2>
+
+    <div class="profile-section">
+      <label for="photoInput" class="photo-wrapper">
+        <img id="userPhoto" src="https://via.placeholder.com/150" alt="Foto">
+        <div class="photo-overlay">
+          <i class="fas fa-camera"></i>
+        </div>
+      </label>
+      <input type="file" id="photoInput" accept="image/*" hidden>
+      <h3 id="userName"></h3>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="password-section">
+      <h4>Alterar Senha</h4>
+      <input type="password" id="currentPassword" placeholder="Senha Atual">
+      <input type="password" id="newPassword" placeholder="Nova Senha">
+      <button class="primary-btn" onclick="changePassword()">Atualizar Senha</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <button class="logout-btn" onclick="openLogoutModal()">
+      <i class="fas fa-right-from-bracket"></i> Sair
+    </button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="logoutModal">
+  <div class="confirm-modal">
+    <h3>Deseja realmente sair da conta?</h3>
+    <div class="confirm-actions">
+      <button class="cancel-btn" onclick="closeLogoutModal()">Cancelar</button>
+      <button class="confirm-btn" onclick="confirmLogout()">Sair</button>
+    </div>
+  </div>
+</div>
+
+<script src="../scripts/global.js"></script>
+<script src="../scripts/rebanho.js"></script>
+</body>
+</html>

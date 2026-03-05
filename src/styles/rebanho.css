@@ -1,0 +1,682 @@
+.herd-panel {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 48px 42px 40px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+button {
+  height: 50px;
+  min-height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.herd-panel__header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.herd-panel__header p {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.sheet-section {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.sheet-section.hidden {
+  display: none !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.create-sheet-btn {
+  align-self: center;
+  padding: 0 28px;
+  border-radius: 12px;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 14px 30px rgba(30, 127, 79, 0.35);
+}
+
+.create-sheet-btn i {
+  font-size: 18px;
+}
+
+.sheet-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sheet-list .empty-state {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 0;
+}
+
+.sheet-item {
+  width: 100%;
+  padding: 18px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.sheet-info {
+  text-align: left;
+}
+
+.sheet-info h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.sheet-date {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.sheet-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sheet-action-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  transition: 0.3s ease;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+}
+
+.sheet-action-btn i {
+  font-size: 16px;
+}
+
+.sheet-action-btn.open {
+  background: rgba(30, 127, 79, 0.65);
+}
+
+.sheet-action-btn.open:hover {
+  background: rgba(30, 127, 79, 0.82);
+}
+
+.sheet-action-btn.edit {
+  background: rgba(242, 193, 58, 0.7);
+  color: #2f2610;
+}
+
+.sheet-action-btn.edit:hover {
+  background: rgba(242, 193, 58, 0.85);
+}
+
+.sheet-action-btn.delete {
+  background: rgba(176, 42, 42, 0.6);
+}
+
+.sheet-action-btn.delete:hover {
+  background: rgba(176, 42, 42, 0.78);
+}
+
+/* ---------- Modal Criar/Editar ---------- */
+
+#sheetModal .sheet-modal {
+  width: min(420px, 92%);
+  padding: 36px 32px;
+  border-radius: 20px;
+  background: rgba(16, 38, 27, 0.8);
+  backdrop-filter: blur(24px);
+  color: white;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+}
+
+.sheet-modal h3 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.sheet-modal__subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 24px;
+}
+
+.sheet-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sheet-modal input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 16px;
+}
+
+.sheet-modal input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.ghost-btn {
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ghost-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ---------- Modal Exclusão ---------- */
+
+#deleteSheetModal .confirm-description,
+#deleteAnimalModal .confirm-description {
+  margin-top: 12px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ---------- Detalhes da Planilha ---------- */
+
+.sheet-detail-title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.sheet-detail-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sheet-detail-actions > button {
+  flex: 1 1 180px;
+  max-width: 220px;
+}
+
+.back-btn,
+.add-animal-btn {
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s ease;
+}
+
+.back-btn {
+  background: rgba(165, 165, 165, 0.4);
+  color: white;
+}
+
+.back-btn:hover {
+  background: rgba(165, 165, 165, 0.58);
+}
+
+.add-animal-btn {
+  background: rgba(30, 127, 79, 0.75);
+  color: white;
+  box-shadow: 0 14px 30px rgba(30, 127, 79, 0.35);
+}
+
+.add-animal-btn:hover {
+  background: rgba(30, 127, 79, 0.9);
+}
+
+.sheet-search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  height: 40px;
+}
+
+.sheet-search i {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sheet-search input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  height: 100%;
+}
+
+.sheet-search input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sheet-search input:focus {
+  outline: none;
+}
+
+.animal-list {
+  width: 100%;
+  padding: 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.animal-list .empty-state {
+  margin: 0;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.animal-card {
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+
+.animal-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.animal-card__header h4 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.animal-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: white;
+  background: rgba(30, 127, 79, 0.6);
+}
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px 18px;
+}
+
+.animal-field span {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.animal-field strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+  color: #f5f5f5;
+}
+
+.animal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.animal-action-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  transition: 0.3s ease;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  font-size: 15px;
+}
+
+.animal-action-btn i {
+  font-size: 16px;
+}
+
+.animal-action-btn.edit {
+  background: rgba(242, 193, 58, 0.7);
+  color: #2f2610;
+}
+
+.animal-action-btn.edit:hover {
+  background: rgba(242, 193, 58, 0.85);
+}
+
+.animal-action-btn.delete {
+  background: rgba(176, 42, 42, 0.6);
+}
+
+.animal-action-btn.delete:hover {
+  background: rgba(176, 42, 42, 0.78);
+}
+
+/* ---------- Modal Adicionar/Editar Animal ---------- */
+
+#addAnimalModal .add-animal-modal {
+  width: min(680px, 94%);
+  padding: 38px 32px 34px;
+  border-radius: 22px;
+  background: rgba(16, 38, 27, 0.92);
+  backdrop-filter: blur(26px);
+  color: white;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+
+#addAnimalModal .add-animal-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+#addAnimalModal .add-animal-modal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+}
+
+.add-animal-modal h3 {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.add-animal__subtitle {
+  text-align: center;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 28px;
+}
+
+#addAnimalForm .grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 24px;
+}
+
+#addAnimalForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+#addAnimalForm input,
+#addAnimalForm select {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+  font-size: 15px;
+}
+
+#addAnimalForm input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#addAnimalForm select option {
+  color: #222;
+}
+
+#addAnimalForm .modal-actions {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#addAnimalForm .modal-actions button {
+  flex: 1 1 180px;
+  max-width: 220px;
+}
+
+/* ---------- Toasts ---------- */
+
+.toast-container {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 420px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.toast {
+  width: 100%;
+  padding: 16px 22px;
+  border-radius: 14px;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(-14px) scale(0.94);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  border: 1px solid transparent;
+  text-align: center;
+  background: rgba(30, 127, 79, 0.85);
+  backdrop-filter: blur(18px);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.toast.success {
+  background: linear-gradient(135deg, rgba(30, 127, 79, 0.92), rgba(30, 127, 79, 0.78));
+  border-color: rgba(30, 127, 79, 0.55);
+}
+
+.toast.danger,
+.toast.error {
+  background: linear-gradient(135deg, rgba(176, 42, 42, 0.92), rgba(176, 42, 42, 0.78));
+  border-color: rgba(176, 42, 42, 0.55);
+}
+
+.toast.info {
+  background: linear-gradient(135deg, rgba(242, 193, 58, 0.92), rgba(242, 193, 58, 0.78));
+  color: #2f2610;
+  border-color: rgba(242, 193, 58, 0.55);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  .herd-panel {
+    padding: 42px 24px 36px;
+    gap: 24px;
+  }
+
+  .herd-panel__header h1 {
+    font-size: 26px;
+  }
+
+  .create-sheet-btn {
+    width: 100%;
+    justify-content: center;
+    box-shadow: none;
+  }
+
+  .sheet-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sheet-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .sheet-action-btn {
+    flex: 1;
+    justify-content: center;
+    min-width: 120px;
+  }
+
+  .sheet-detail-title {
+    font-size: 24px;
+  }
+
+  .sheet-detail-actions {
+    flex-direction: column;
+    width: min(320px, 100%);
+    gap: 12px;
+    height: 50px;
+  }
+
+  .sheet-detail-actions > button {
+    max-width: none;
+    font-size: 15px;
+  }
+
+  .sheet-search {
+    padding: 0 14px;
+  }
+
+  .animal-card__header h4 {
+    font-size: 17px;
+  }
+
+  .animal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .animal-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .animal-action-btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  #addAnimalForm .grid {
+    grid-template-columns: 1fr;
+  }
+
+  #addAnimalForm .modal-actions {
+    margin-top: 24px;
+    gap: 14px;
+  }
+
+  #addAnimalForm .modal-actions button {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+}
+
+/* ---------- Sidebar fixa em telas grandes ---------- */
+@media (min-width: 1024px) {
+  .layout {
+    display: flex;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    flex-shrink: 0;
+    overflow-y: auto;
+  }
+
+  .content {
+    flex: 1;
+  }
+}

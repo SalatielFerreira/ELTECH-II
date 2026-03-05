@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELTECH - Relatório</title>
+
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/relatorio.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+  <link rel="shortcut icon" href="../assets/images/favicon.png">
+
+  <!-- Bibliotecas para exportação -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.7.1/dist/jspdf.plugin.autotable.min.js" defer></script>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <h1 class="logo">ELTECH</h1>
+    <nav class="menu">
+      <a href="home.html"><i class="fas fa-house"></i> Home</a>
+      <a href="rebanho.html"><i class="fas fa-cow"></i> Rebanho</a>
+      <a href="inseminacao.html"><i class="fas fa-dna"></i> Inseminação</a>
+      <a href="alimentacao.html"><i class="fas fa-seedling"></i> Alimentação</a>
+      <a href="vacinacao.html"><i class="fas fa-syringe"></i> Vacinação</a>
+      <a href="relatorio.html" class="active"><i class="fas fa-chart-line"></i> Relatório</a>
+      <a href="#" onclick="openSettings()"><i class="fas fa-gear"></i> Configurações</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section class="report-panel">
+      <header class="report-panel__header">
+        <h1>Gerar Relatório</h1>
+        <p>Selecione o módulo e a planilha desejada para exportar os dados.</p>
+      </header>
+
+      <form class="report-form" id="reportForm" autocomplete="off">
+        <label class="form-field">
+          <span>Tipo de Relatório</span>
+          <select id="reportTypeSelect" required>
+            <option value="">-- Selecione uma opção --</option>
+          </select>
+        </label>
+
+        <label class="form-field">
+          <span>Planilha</span>
+          <select id="sheetSelect" disabled required>
+            <option value="">Selecione o tipo primeiro</option>
+          </select>
+        </label>
+
+        <div class="actions">
+          <button type="button" class="primary-btn excel-btn" id="excelBtn" disabled>
+            <i class="fas fa-file-excel"></i> Gerar Excel
+          </button>
+          <button type="button" class="danger-btn pdf-btn" id="pdfBtn" disabled>
+            <i class="fas fa-file-pdf"></i> Gerar PDF
+          </button>
+        </div>
+      </form>
+
+      <p class="helper-text" id="reportHint">
+        Escolha o tipo de relatório para listar as planilhas disponíveis.
+      </p>
+    </section>
+  </main>
+
+</div>
+
+<!-- Modal Configurações -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <span class="close-btn" onclick="closeSettings()">&times;</span>
+
+    <h2 class="modal-title">Configurações</h2>
+
+    <div class="profile-section">
+      <label for="photoInput" class="photo-wrapper">
+        <img id="userPhoto" src="https://via.placeholder.com/150" alt="Foto">
+        <div class="photo-overlay">
+          <i class="fas fa-camera"></i>
+        </div>
+      </label>
+      <input type="file" id="photoInput" accept="image/*" hidden>
+      <h3 id="userName"></h3>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="password-section">
+      <h4>Alterar Senha</h4>
+      <input type="password" id="currentPassword" placeholder="Senha Atual">
+      <input type="password" id="newPassword" placeholder="Nova Senha">
+      <button class="primary-btn" onclick="changePassword()">
+        Atualizar Senha
+      </button>
+    </div>
+
+    <div class="divider"></div>
+
+    <button class="logout-btn" onclick="openLogoutModal()">
+      <i class="fas fa-right-from-bracket"></i> Sair
+    </button>
+  </div>
+</div>
+
+<!-- Modal Logout -->
+<div class="modal-overlay" id="logoutModal">
+  <div class="confirm-modal">
+    <h3>Deseja realmente sair da conta?</h3>
+    <div class="confirm-actions">
+      <button class="cancel-btn" onclick="closeLogoutModal()">Cancelar</button>
+      <button class="confirm-btn" onclick="confirmLogout()">Sair</button>
+    </div>
+  </div>
+</div>
+
+<script src="../scripts/global.js" defer></script>
+<script src="../scripts/relatorio.js" defer></script>
+</body>
+</html>

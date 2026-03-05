@@ -1,0 +1,469 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: url("../assets/images/fundo.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* LAYOUT PRINCIPAL */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR VIDRADA VERDE
+========================= */
+
+.sidebar {
+  width: 260px;
+  background: rgba(255, 255, 255, 0.12); /* transparente */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 0 25px rgba(0,0,0,0.25);
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.logo {
+  font-size: 50px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+/* MENU */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: 0.3s ease;
+}
+
+.menu a i {
+  width: 20px;
+  text-align: center;
+  color: white;
+}
+
+.menu a:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateX(5px);
+}
+
+.menu a.active {
+  background: rgba(255,255,255,0.25);
+}
+
+/* =========================
+   CONTEÚDO PRINCIPAL
+========================= */
+
+.content {
+  flex: 1;
+  padding: 60px;
+  color: white;
+}
+
+.content h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.content p {
+  font-size: 18px;
+  opacity: 0.95;
+}
+
+/* MODAL */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  width: 400px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 16px;
+  color: white;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.profile-section img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.profile-section input {
+  margin-bottom: 15px;
+  color: white;
+}
+
+.password-section input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.password-section button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #1e7f4f;
+  color: white;
+  cursor: pointer;
+}
+
+.logout-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #b02a2a;
+  color: white;
+  cursor: pointer;
+}
+
+/* =========================
+   MODAL REFINADO
+========================= */
+
+.modal {
+  width: 420px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(18px);
+  padding: 40px 30px;
+  border-radius: 20px;
+  color: white;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.modal-title {
+  margin-bottom: 25px;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 22px;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  opacity: 1;
+}
+
+/* FOTO */
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-wrapper {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 15px;
+  border: 3px solid rgba(255,255,255,0.4);
+  transition: 0.3s;
+}
+
+.photo-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.photo-overlay i {
+  color: white;
+  font-size: 22px;
+}
+
+.photo-wrapper:hover .photo-overlay {
+  opacity: 1;
+}
+
+#userName {
+  font-size: 18px;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+/* DIVISOR */
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 25px 0;
+}
+
+/* SENHA */
+
+.password-section h4 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.password-section input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #1e7f4f;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  background: #145a3a;
+}
+
+/* LOGOUT */
+
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #b02a2a;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #8a1f1f;
+}
+
+/* =========================
+   MODAL CONFIRMAÇÃO LOGOUT
+========================= */
+
+.confirm-modal {
+  width: 350px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(18px);
+  padding: 30px;
+  border-radius: 18px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  gap: 15px;
+}
+
+.cancel-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #777;
+  color: white;
+  cursor: pointer;
+}
+
+.confirm-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #b02a2a;
+  color: white;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background: #8a1f1f;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+/* Responsivo para telas pequenas */
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+  }
+
+  /* Barra superior com o título */
+  body::before {
+    content: "ELTECH";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(18px);
+    color: #fff;
+    font-size: 35px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    z-index: 960; /* fica abaixo dos modais (999) */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+  }
+
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-right: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.35);
+    z-index: 950;
+  }
+
+  .sidebar .logo {
+    display: none; /* evita duplicar o título */
+  }
+
+  .menu {
+    width: 100%;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .menu a {
+    flex: 1;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 10px 0;
+    font-size: 0; /* esconde o texto, deixando só o ícone */
+    background: transparent;
+    transform: none;
+  }
+
+  .menu a:hover,
+  .menu a.active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .menu a i {
+    font-size: 22px;
+    margin-left: 10px;
+  }
+
+  .content {
+    padding: 90px 20px 110px; /* distância das barras */
+    min-height: calc(100vh - 180px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+}
