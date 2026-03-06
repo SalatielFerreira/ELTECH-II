@@ -25,47 +25,14 @@ const urlsToCache = [
   './assets/images/favicon.png'
 ];
 
-self.addEventListener('install', event => {
-  console.log('Service Worker: Instalando...');
+self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Cacheando arquivos essenciais...');
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
   );
 });
 
-self.addEventListener('activate', event => {
-  console.log('Service Worker: Ativado');
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames
-          .filter(name => name !== CACHE_NAME)
-          .map(name => caches.delete(name))
-      );
-    })
-  );
-});
-
-self.addEventListener('fetch', event => {
+self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse; // offline
-        }
-        return fetch(event.request).then(networkResponse => {
-          // opcional: atualizar cache dinamicamente
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
-        }).catch(() => {
-          // fallback offline (pode criar uma página de erro)
-          return caches.match('./pages/login.html');
-        });
-      })
+    caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
