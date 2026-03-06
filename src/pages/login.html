@@ -1,58 +1,78 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ELTECH - Acesso</title>
+
+  <!-- Estilos e ícones -->
   <link rel="stylesheet" href="../styles/login.css">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
   <link rel="shortcut icon" href="../assets/images/favicon.png">
+
+  <!-- 🔹 Configurações PWA -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#317EFB">
+  <meta name="description" content="Sistema ELTECH - Acesso Seguro e Offline">
+
 </head>
 <body>
 
-<div class="main-wrapper">
+  <div class="main-wrapper">
+    <h1 class="company-title">ELTECH</h1>
 
-  <h1 class="company-title">ELTECH</h1>
+    <div class="card">
+      <!-- Formulário de Login -->
+      <form id="loginForm" class="form active">
+        <h2>Acessar Sistema</h2>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Senha" required>
+        <button type="submit" class="btn">Entrar</button>
 
-  <div class="card">
+        <div class="footer-links">
+          <span onclick="showForm('recover')">Esqueceu a senha?</span>
+          <span onclick="showForm('register')">Cadastrar</span>
+        </div>
+      </form>
 
-    <form id="loginForm" class="form active">
-      <h2>Acessar Sistema</h2>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Senha" required>
-      <button type="submit" class="btn">Entrar</button>
+      <!-- Formulário de Cadastro -->
+      <form id="registerForm" class="form">
+        <h2>Criar Conta</h2>
+        <input type="text" placeholder="Nome" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Senha" required>
+        <button type="submit" class="btn">Cadastrar</button>
 
-      <div class="footer-links">
-        <span onclick="showForm('recover')">Esqueceu a senha?</span>
-        <span onclick="showForm('register')">Cadastrar</span>
-      </div>
-    </form>
+        <div class="footer-links">
+          <span onclick="showForm('login')">Voltar para Login</span>
+        </div>
+      </form>
 
-    <form id="registerForm" class="form">
-      <h2>Criar Conta</h2>
-      <input type="text" placeholder="Nome" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Senha" required>
-      <button type="submit" class="btn">Cadastrar</button>
+      <!-- Formulário de Recuperação -->
+      <form id="recoverForm" class="form">
+        <h2>Recuperar Senha</h2>
+        <input type="email" placeholder="Digite seu email" required>
+        <button type="submit" class="btn">Enviar</button>
 
-      <div class="footer-links">
-        <span onclick="showForm('login')">Voltar para Login</span>
-      </div>
-    </form>
+        <div class="footer-links">
+          <span onclick="showForm('login')">Voltar para Login</span>
+        </div>
+      </form>
 
-    <form id="recoverForm" class="form">
-      <h2>Recuperar Senha</h2>
-      <input type="email" placeholder="Digite seu email" required>
-      <button type="submit" class="btn">Enviar</button>
-
-      <div class="footer-links">
-        <span onclick="showForm('login')">Voltar para Login</span>
-      </div>
-    </form>
-
+    </div>
   </div>
-</div>
 
-<script src="../scripts/login.js"></script>
+  <!-- Scripts -->
+  <script src="../scripts/login.js"></script>
+
+  <!-- 🔹 Registro do Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../sw.js')
+        .then(() => console.log('✅ Service Worker registrado!'))
+        .catch(err => console.error('Erro ao registrar Service Worker:', err));
+    }
+  </script>
+
 </body>
 </html>
