@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="../assets/images/favicon.png">
 
   <!-- 🔹 Configurações PWA -->
-  <link rel="manifest" href="../manifest.json">
+  <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#317EFB">
   <meta name="description" content="Sistema ELTECH - Acesso Seguro e Offline">
 
@@ -68,7 +68,7 @@
   <!-- 🔹 Registro do Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('../sw.js')
+      navigator.serviceWorker.register('/sw.js')
         .then(() => console.log('✅ Service Worker registrado!'))
         .catch(err => console.error('Erro ao registrar Service Worker:', err));
     }
@@ -76,3 +76,4 @@
 
 </body>
 </html>
+
